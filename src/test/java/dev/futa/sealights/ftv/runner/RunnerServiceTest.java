@@ -67,6 +67,22 @@ public class RunnerServiceTest {
         assertEquals(exception.getResponseBodyAsString(), "bad to the bone");
     }
 
+    @Test
+    void shouldReturnHelloWorld() {
+        // when
+        HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () -> {
+            restTemplate.getForEntity(
+                targetServerUrl + "/hello",
+                String.class);
+        });
+
+        sleep();
+
+        // then
+        assertEquals(HttpStatus.OK, exception.getStatusCode());
+        assertEquals(exception.getResponseBodyAsString(), "Hello World!");
+    }
+
     private void sleep() {
         try {
             Thread.sleep(9_000);
