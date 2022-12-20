@@ -1,8 +1,9 @@
-package dev.futa.sealights.ftv.runner;
+package i0.sealights.ftv.runner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,11 @@ public class RunnerServiceTest {
 
     final String targetServerUrl = "http://localhost:8080";
     final RestTemplate restTemplate = new RestTemplate();
+
+    @BeforeAll
+    void setup() {
+
+    }
 
     @Test
     void shouldReturnEchoResponseForPhrase_echo() {
