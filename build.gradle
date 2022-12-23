@@ -61,7 +61,7 @@ allprojects.each { p ->
                 packagesExcluded = ""
                 recursive = true
                 includeResources = true
-                testStage = "Runner Tests"
+                testStage = "Runner Stage"
                 logEnabled = true
                 logPluginMinimal = false
                 logToConsole = true
@@ -70,7 +70,7 @@ allprojects.each { p ->
                 createBuildSessionId = false
 //                sealightsJvmParams = ["sl.codeCoverageManager.version": "v2"]
                 build = "${slBuildName}"
-                branch = "ftv"
+                branch = "classic"
                 buildScannerJar = "sl-build-scannerc.jar"
                 testListenerJar = "sl-test-listenerc.jar"
             }
