@@ -32,45 +32,47 @@ test {
     useJUnitPlatform()
 }
 
-if (ext['runnerEnabled']) {
-    allprojects.each { p ->
-        def included = []
-        def excluded = []
+allprojects.each { p ->
+    def included = []
+    def excluded = []
 
-        if (!included.isEmpty()) {
-            println "[SeaLights Integration] Including only projects: ${included}"
-        }
+    if (!included.isEmpty()) {
+        println "[SeaLights Integration] Including only projects: ${included}"
+    }
 
-        if (!excluded.isEmpty()) {
-            println "[SeaLights Integration] Excluding projects: ${excluded}"
-        }
+    if (!excluded.isEmpty()) {
+        println "[SeaLights Integration] Excluding projects: ${excluded}"
+    }
 
-        if (!excluded.contains(p.name) &&
-                (included.isEmpty() || included.contains(p.name))) {
-            println "[SeaLights Integration] SeaLights applied to project: '${p.name}'"
+    if (!excluded.contains(p.name) &&
+            (included.isEmpty() || included.contains(p.name))) {
+        println "[SeaLights Integration] SeaLights applied to project: '${p.name}'"
 
-            p.afterEvaluate {
+        p.afterEvaluate {
 
-                p.apply plugin: io.sealights.onpremise.agents.plugin.SealightsPlugin
-                p.sealights {
+            p.apply plugin: io.sealights.onpremise.agents.plugin.SealightsPlugin
+            p.sealights {
 
-                    token = "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL0RFVi1mdHYuYXV0aC5zZWFsaWdodHMuaW8vIiwiand0aWQiOiJERVYtZnR2LGktMGMxNjU4YjA0ZTljMDMwMzMsQVBJR1ctZGE0OGJmODAtOWNlOC00YmY1LThlNjQtNzg5YzI4ZGI4YTFkLDE2Njg0MzE2NjQ0MTMiLCJzdWJqZWN0IjoiU2VhTGlnaHRzQGFnZW50IiwiYXVkaWVuY2UiOlsiYWdlbnRzIl0sIngtc2wtcm9sZSI6ImFnZW50IiwieC1zbC1zZXJ2ZXIiOiJodHRwczovL2Rldi1mdHYtZ3cuZGV2LnNlYWxpZ2h0cy5jby9hcGkiLCJzbF9pbXBlcl9zdWJqZWN0IjoiIiwiaWF0IjoxNjY4NDMxNjY0fQ.GOhhhcA92yg0DcMtenuZZxY-QhF45uVJP01Fw6OPM0C6eDWkncxyg-9ZNgJeWKMjp5C3L_0ziEF0Xt0yzmldCDuBLkRHjOaEbtZy_-Q0IVS4Q4eXkiA4DCUajjYBIR6sTBP6A9YXOVQV3QC7Pa4DJP0g5WxtZpCwCmqD73AAz4hXPIPidGe6HlhFrliRlHU8HTugNEQ1mtz4MM0rzZY8yO3f3K4yeXQXRfjpNXGGO7UuyNDG9k4IJAqcaFivbIKfpbtYSUE_ZWznWUwJHRyxDzu8Vv7GgIzTbl_3_Qanw5ckb51GJ8Z6fFSo-5IwOaQRmCIz3yBPjFV3cbbxyI75T5axT0RFzuwv_JHkiIV29xe4Rhk87uFWkMGzLvq57kmTL7-OV890LdO5uxQih6oTYqkSRPD5fXYyz9sYvYsdFQrJb1TPLd1Ozzm3UWp54fbPsqvRqu75vJe_OyBBo66evUlc4BiI0A8LgdIjs1fP2X61wNJG5GAzZsG1-_Cv3P7Vq_N6MM-9Beaing9XmxceAcPl8FKB_IirZJqbec6HYpsqXkDfuGVv7Rxb71BBfpC_9kEZbYsFcoU6MbLsp_xvFwE1W5rr-6K1kP8ZPeveLLO4X1-q_fnoQkVVvg1JgHQJXLLE9XWyLh2i_htH6aIX4KbY_wbAqAUkcJ6pmyuWLjw"
-                    packagesIncluded = "dev.futa.sealights*"
-                    proxy = ""
-                    recursive = true
-                    includeResources = true
-                    testStage = "Other Phase Tests"
-                    labId = "integ_puppet_038a_gfftvlab02"
-                    runFunctionalTests = true
-                    runTestOnly = true
-                    logEnabled = false
-                    logPluginMinimal = false
-                    logToConsole = true
-                    logLevel = "info"
-                    createBuildSessionId = false
-                    sealightsJvmParams = [:]
-
-                }
+                token = "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL0RFVi1mdHYuYXV0aC5zZWFsaWdodHMuaW8vIiwiand0aWQiOiJERVYtZnR2LGktMGMxNjU4YjA0ZTljMDMwMzMsQVBJR1ctZGE0OGJmODAtOWNlOC00YmY1LThlNjQtNzg5YzI4ZGI4YTFkLDE2Njg0MzE2NjQ0MTMiLCJzdWJqZWN0IjoiU2VhTGlnaHRzQGFnZW50IiwiYXVkaWVuY2UiOlsiYWdlbnRzIl0sIngtc2wtcm9sZSI6ImFnZW50IiwieC1zbC1zZXJ2ZXIiOiJodHRwczovL2Rldi1mdHYtZ3cuZGV2LnNlYWxpZ2h0cy5jby9hcGkiLCJzbF9pbXBlcl9zdWJqZWN0IjoiIiwiaWF0IjoxNjY4NDMxNjY0fQ.GOhhhcA92yg0DcMtenuZZxY-QhF45uVJP01Fw6OPM0C6eDWkncxyg-9ZNgJeWKMjp5C3L_0ziEF0Xt0yzmldCDuBLkRHjOaEbtZy_-Q0IVS4Q4eXkiA4DCUajjYBIR6sTBP6A9YXOVQV3QC7Pa4DJP0g5WxtZpCwCmqD73AAz4hXPIPidGe6HlhFrliRlHU8HTugNEQ1mtz4MM0rzZY8yO3f3K4yeXQXRfjpNXGGO7UuyNDG9k4IJAqcaFivbIKfpbtYSUE_ZWznWUwJHRyxDzu8Vv7GgIzTbl_3_Qanw5ckb51GJ8Z6fFSo-5IwOaQRmCIz3yBPjFV3cbbxyI75T5axT0RFzuwv_JHkiIV29xe4Rhk87uFWkMGzLvq57kmTL7-OV890LdO5uxQih6oTYqkSRPD5fXYyz9sYvYsdFQrJb1TPLd1Ozzm3UWp54fbPsqvRqu75vJe_OyBBo66evUlc4BiI0A8LgdIjs1fP2X61wNJG5GAzZsG1-_Cv3P7Vq_N6MM-9Beaing9XmxceAcPl8FKB_IirZJqbec6HYpsqXkDfuGVv7Rxb71BBfpC_9kEZbYsFcoU6MbLsp_xvFwE1W5rr-6K1kP8ZPeveLLO4X1-q_fnoQkVVvg1JgHQJXLLE9XWyLh2i_htH6aIX4KbY_wbAqAUkcJ6pmyuWLjw"
+                appName = "hello-ftv-app"
+                filesIncluded = "*.class"
+                filesExcluded = "*test-classes*"
+                packagesIncluded = "i0.sealights.*"
+                packagesExcluded = ""
+                recursive = true
+                includeResources = true
+                testStage = "Runner Tests"
+                logEnabled = true
+                logPluginMinimal = false
+                logToConsole = true
+                logLevel = "debug"
+                logFolder = "logs"
+                createBuildSessionId = false
+//                sealightsJvmParams = ["sl.codeCoverageManager.version": "v2"]
+                build = "${slBuildName}"
+                branch = "ftv"
+                buildScannerJar = "sl-build-scannerc.jar"
+                testListenerJar = "sl-test-listenerc.jar"
             }
         }
     }

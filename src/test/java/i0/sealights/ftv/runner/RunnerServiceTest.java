@@ -16,7 +16,7 @@ public class RunnerServiceTest {
     final RestTemplate restTemplate = new RestTemplate();
 
     @BeforeAll
-    void setup() {
+    static void setup() {
 
     }
 
@@ -35,6 +35,8 @@ public class RunnerServiceTest {
         // then
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("PONG: echo", response.getBody());
+
+        sleep();
     }
 
     @Test
@@ -52,6 +54,8 @@ public class RunnerServiceTest {
         // then
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("PONG: ping", response.getBody());
+
+        sleep();
     }
 
     @Test
@@ -76,22 +80,22 @@ public class RunnerServiceTest {
     @Test
     void shouldReturnHelloWorld() {
         // when
-        HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () -> {
-            restTemplate.getForEntity(
-                targetServerUrl + "/hello",
-                String.class);
-        });
+        ResponseEntity<String> actualResponse = restTemplate.getForEntity(
+            targetServerUrl + "/hello",
+            String.class);
 
         sleep();
 
         // then
-        assertEquals(HttpStatus.OK, exception.getStatusCode());
-        assertEquals(exception.getResponseBodyAsString(), "Hello World!");
+        assertEquals(HttpStatus.OK, actualResponse.getStatusCode());
+        assertEquals(actualResponse.getBody(), "Hello World!");
+
+        sleep();
     }
 
     private void sleep() {
         try {
-            Thread.sleep(9_000);
+            Thread.sleep(2_000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
