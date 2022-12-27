@@ -34,14 +34,14 @@ public class RunnerServiceTest02 {
 
         // when
         ResponseEntity<String> response = restTemplate.getForEntity(
-            targetServerUrl + "/echo/" + phraseToEcho,
+            targetServerUrl + "/echo2/" + phraseToEcho,
             String.class);
 
         sleep();
 
         // then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("PONG: " + phraseToEcho, response.getBody());
+        assertEquals("Hello, " + phraseToEcho, response.getBody());
     }
 
     @Test
@@ -51,25 +51,25 @@ public class RunnerServiceTest02 {
 
         // when
         ResponseEntity<String> response = restTemplate.getForEntity(
-            targetServerUrl + "/echo/" + phraseToEcho,
+            targetServerUrl + "/echo2/" + phraseToEcho,
             String.class);
 
         sleep();
 
         // then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("PONG: ping", response.getBody());
+        assertEquals("Hello, ping", response.getBody());
     }
 
-    @Test
+    @RepeatedTest(10)
     void shouldReturnEchoResponseForPhrase_asterisk() {
         // given
-        final String phraseToEcho = "*asterisk";
+        final String phraseToEcho = NamesGenerator.generateName();
 
         // when
         HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () -> {
             restTemplate.getForEntity(
-                targetServerUrl + "/echo/" + phraseToEcho,
+                targetServerUrl + "/echo2/" + phraseToEcho,
                 String.class);
         });
 
@@ -77,14 +77,14 @@ public class RunnerServiceTest02 {
 
         // then
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
-        assertEquals(exception.getResponseBodyAsString(), "bad to the bone");
+        assertEquals(exception.getResponseBodyAsString(), "bad to the bone, " + phraseToEcho);
     }
 
     @Test
     void shouldReturnHelloWorld() {
         // when
         ResponseEntity<String> actualResponse = restTemplate.getForEntity(
-            targetServerUrl + "/hello",
+            targetServerUrl + "/hello2",
             String.class);
 
         sleep();

@@ -12,7 +12,6 @@ public class NamesGenerator {
         "Abraham", "Leslie", "Jose", "Owen", "Wiley", "Morris", "Elbert", "Nicholas", "Clinton",
         "Phillip", "Marshall", "Wilson", "Eli", "Anton", "Emmett", "Manuel", "Augustus", "Marvin"};
 
-
     static String generateName() {
         final int randomInt = ThreadLocalRandom.current().nextInt(0, NAMES.length);
         return NAMES[randomInt];
