@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-public class RunnerServiceTest {
+public class RunnerServiceTest02 {
 
     final String targetServerUrl = "http://localhost:8080";
     final RestTemplate restTemplate = new RestTemplate();
