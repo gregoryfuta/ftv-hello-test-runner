@@ -17,7 +17,7 @@ public class RunnerServiceTest {
 
     @BeforeAll
     static void setup() {
-
+        int i = 1;
     }
 
     @Test
