@@ -27,7 +27,6 @@ public class RunnerServiceTest {
         sleep();
     }
 
-    @RepeatedTest(10)
     void shouldReturnEchoResponseForPhrase_randomName() {
         // given
         final String phraseToEcho = NamesGenerator.generateName();
@@ -96,7 +95,7 @@ public class RunnerServiceTest {
 
     private static void sleep() {
         try {
-            Thread.sleep(2_000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -104,28 +103,9 @@ public class RunnerServiceTest {
 
     private static void sleepBefore() {
         try {
-            Thread.sleep(12_000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
-
-//
-//    @Test
-//    public void printSystemProps() {
-//        System.getenv().forEach((key, value) -> {
-//            System.out.println("ENV:  " + key + " => " + value);
-//        });
-//
-//        System.getProperties().entrySet().forEach(entry -> {
-//            System.out.println("PRO:  " + entry.getKey() + " => " + entry.getValue());
-//        });
-//
-//        new RestTemplate().getForEntity(
-//            "http://localhost:8080/echo/blah",
-//            String.class);
-//
-//        assert true;
-//    }
-
 }

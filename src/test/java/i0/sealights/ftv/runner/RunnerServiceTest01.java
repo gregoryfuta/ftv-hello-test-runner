@@ -27,7 +27,6 @@ public class RunnerServiceTest01 {
         sleep();
     }
 
-    @RepeatedTest(10)
     void shouldReturnEchoResponseForPhrase_randomName() {
         // given
         final String phraseToEcho = NamesGenerator.generateName();
@@ -96,7 +95,7 @@ public class RunnerServiceTest01 {
 
     private static void sleep() {
         try {
-            Thread.sleep(2_000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -104,7 +103,7 @@ public class RunnerServiceTest01 {
 
     private static void sleepBefore() {
         try {
-            Thread.sleep(12_000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
