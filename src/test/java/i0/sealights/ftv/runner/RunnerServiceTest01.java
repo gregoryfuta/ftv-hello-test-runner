@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RunnerServiceTest01 {
 
-    final String targetServerUrl = "http://localhost:8080";
+    final String targetServerUrl = "http://localhost:8080/ftv-hello-app";
     final RestTemplate restTemplate = new RestTemplate();
 
     @BeforeEach
