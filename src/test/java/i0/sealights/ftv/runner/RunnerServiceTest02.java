@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RunnerServiceTest02 {
 
-    final String targetServerUrl = "http://localhost:8080/ftv-hello-app";
+    final String targetServerUrl = "http://localhost:8080";
     final RestTemplate restTemplate = new RestTemplate();
 
     @BeforeEach
@@ -95,7 +95,7 @@ public class RunnerServiceTest02 {
 
     private static void sleep() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(12000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

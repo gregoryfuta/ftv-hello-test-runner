@@ -6,4 +6,4 @@ set HTTP_DEBUG=-Dsl.httpDebugLog=yes
 set COVERAGE_MANAGER=-Dsl.featuresData.codeCoverageManagerVersion=v2
 set OTEL=-Dsl.otel.enabled=true -Dsl.otel.loadEmbeddedAgent=true -Dotel.javaagent.debug=true -Dotel.propagators=tracecontext,baggage,xray
 
-java %LOGGING% %HTTP_DEBUG% %COVERAGE_MANAGER% %OTEL% -jar sl-test-listener.jar end -tokenfile dev-integ-ftv2.token.txt -labid %SL_LAB_ID%
+java %LOGGING% %HTTP_DEBUG% %COVERAGE_MANAGER% %OTEL% -jar sl-test-listener.jar end -buildsessionidfile buildSessionId.txt -tokenfile dev-integ-ftv2.token.txt -labid %SL_LAB_ID%
