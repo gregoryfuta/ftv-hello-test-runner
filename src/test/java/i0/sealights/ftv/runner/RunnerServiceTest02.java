@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RunnerServiceTest02 {
 
-    final String targetServerUrl = "http://localhost:8080";
+    final String targetServerUrl = "http://localhost:8080" + Settings.contextPath;
     final RestTemplate restTemplate = new RestTemplate();
 
     @BeforeEach
@@ -95,7 +95,7 @@ public class RunnerServiceTest02 {
 
     private static void sleep() {
         try {
-            Thread.sleep(12000);
+            Thread.sleep(Settings.sleepTime);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

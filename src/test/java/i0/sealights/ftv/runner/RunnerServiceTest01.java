@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RunnerServiceTest01 {
 
-    final String targetServerUrl = "http://localhost:8080";
+    final String targetServerUrl = "http://localhost:8080" + Settings.contextPath;
     final RestTemplate restTemplate = new RestTemplate();
 
     @BeforeEach
@@ -95,7 +96,7 @@ public class RunnerServiceTest01 {
 
     private static void sleep() {
         try {
-            Thread.sleep(12000);
+            Thread.sleep(Settings.sleepTime);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

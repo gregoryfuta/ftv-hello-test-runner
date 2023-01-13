@@ -3,6 +3,9 @@ package i0.sealights.ftv.runner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -14,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RunnerServiceTest {
 
-    final String targetServerUrl = "http://localhost:8080";
+    final String targetServerUrl = "http://localhost:8080" + Settings.contextPath;
     final RestTemplate restTemplate = new RestTemplate();
 
     @BeforeEach
@@ -93,9 +96,43 @@ public class RunnerServiceTest {
         assertEquals(actualResponse.getBody(), "Hello World!");
     }
 
+    @Test
+    void shouldReturnHelloDate() {
+        // given
+        final String expectedResponse = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+
+        // when
+        ResponseEntity<String> actualResponse = restTemplate.getForEntity(
+            targetServerUrl + "/hello/date",
+            String.class);
+
+        sleep();
+
+        // then
+        assertEquals(HttpStatus.OK, actualResponse.getStatusCode());
+        assertEquals(actualResponse.getBody(), expectedResponse);
+    }
+
+    @Test
+    void shouldReturnHello2Date() {
+        // given
+        final String expectedResponse = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+
+        // when
+        ResponseEntity<String> actualResponse = restTemplate.getForEntity(
+            targetServerUrl + "/hello2/date",
+            String.class);
+
+        sleep();
+
+        // then
+        assertEquals(HttpStatus.OK, actualResponse.getStatusCode());
+        assertEquals(actualResponse.getBody(), expectedResponse);
+    }
+
     private static void sleep() {
         try {
-            Thread.sleep(12000);
+            Thread.sleep(Settings.sleepTime);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
